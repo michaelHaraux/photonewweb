@@ -1,0 +1,240 @@
+{# empty Twig template #}
+{% extends "PhotonewMainBundle::layout.html.twig" %}
+{#{% block pageTitle %}Studio Photographique{% endblock %}#}
+{% block sectionTitle %}Administration{% endblock %}
+{% block menu %}
+    <ul class="nav navbar-nav">
+        <li > <a href="{{ path('_accueil') }}">Accueil</a> </li>
+        <li > <a href="{{ path('_testMenu') }}">Studio Photographique</a> </li>
+        <li> <a href="#">Communication Publicitaire</a> </li>
+        <li class="dropdown">
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="icon-user icon-white"></i> Professionnels<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li>
+                    <a href="">Studio Photo</a>
+                </li>
+                <li>
+                    <a href="">Studio Info</a>
+                </li> 
+            </ul>
+        </li>
+        <li > <a href="{{ path('_contact') }}">Contact</a> </li>
+    </ul>
+{% endblock %}
+
+{% block photonewBundle_body %}
+
+    <table class="table table-bordered table-striped table-condensed">
+        <caption>
+            <h4>Visiteurs</h4>
+        </caption>
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Mail</th>
+                <th>Objet</th>
+                <th>Contenu</th>
+                <th>Date</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for visiteur in listeVisiteurs %}
+                <tr>
+                    <td>{{ visiteur.visiteurNom }}</td>
+                    <td>{{ visiteur.visiteurPrenom }}</td>
+                    <td>{{ visiteur.visiteurMail }}</td>
+                    <td>{{ visiteur.message.objet.objetNom}}</td>
+                    <td>{{ visiteur.message.messageContenu }}</td>
+                    <td>{{ visiteur.message.messageDate |date("d-m-Y")}}</td>
+                    <td><a href="{{ path('_reponseMessage' ,{'id': visiteur.id})}}" class="btn btn-default" role="button">Répondre</a></td>
+                    <td><a href="{{ path('_deleteMessage' ,{'id': visiteur.id})}}" class="btn btn-danger" role="button"><i class="glyphicon glyphicon-trash"></i></a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <table class="table table-bordered table-striped table-condensed">
+        <caption>
+            <h4>Clients</h4>
+        </caption>
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Mail</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for client in listeClient %}
+                <tr>
+                    <td>{{ client.clientNom }}</td>
+                    <td>{{ client.clientPrenom }}</td>
+                    <td>{{ client.clientMail }}</td>
+                    <td><a href="{{ path('_voirClient' ,{'id': client.id})}}" class="btn btn-default" role="button">Voir</a></td>
+                    <td><a href="{{ path('_modifierClient' ,{'id': client.id})}}" class="btn btn-default" role="button">Modifier</a></td>
+                    <td><a href="{{ path('_deleteClient' ,{'id': client.id})}}" class="btn btn-danger" role="button"><i class="glyphicon glyphicon-trash"></i></a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+
+{% block aside %}
+    <h3>Formulaire client</h3>
+    <div class="well">
+        <div class="well">
+            {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+
+            {# Les erreurs générales du formulaire. #}
+            {{ form_errors(form) }}
+
+            <div class="form-group">
+                {# Génération du label. #}
+                {{ form_label(form.clientNom, "Nom", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+
+                {# Affichage des erreurs pour ce champ précis. #}
+                {{ form_errors(form.clientNom) }}
+
+                <div class="col-sm-4">
+                    {# Génération de l'input. #}
+                    {{ form_widget(form.clientNom, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+            <div class="form-group">
+                {# Génération du label. #}
+                {{ form_label(form.clientPrenom, "Prénom", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+
+                {# Affichage des erreurs pour ce champ précis. #}
+                {{ form_errors(form.clientPrenom) }}
+
+                <div class="col-sm-4">
+                    {# Génération de l'input. #}
+                    {{ form_widget(form.clientPrenom, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+            <div class="form-group">
+                {# Génération du label. #}
+                {{ form_label(form.clientMail, "Mail", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+
+                {# Affichage des erreurs pour ce champ précis. #}
+                {{ form_errors(form.clientMail) }}
+
+                <div class="col-sm-4">
+                    {# Génération de l'input. #}
+                    {{ form_widget(form.clientMail, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+            <div class="form-group">
+                {# Génération du label. #}
+                {{ form_label(form.clientTel, "Téléphone", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+
+                {# Affichage des erreurs pour ce champ précis. #}
+                {{ form_errors(form.clientTel) }}
+
+                <div class="col-sm-4">
+                    {# Génération de l'input. #}
+                    {{ form_widget(form.clientTel, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+
+            <div  class="form-group">
+                {{ form_label(form.clientAdNum, "Numéro", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+                {{ form_errors(form.clientAdNum) }}
+                <div class="col-sm-4">
+                    {{ form_widget(form.clientAdNum, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>   
+
+            <div class="form-group">
+                {# Génération du label. #}
+                {{ form_label(form.clientAdRue, "Rue/Route", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+
+                {# Affichage des erreurs pour ce champ précis. #}
+                {{ form_errors(form.clientAdRue) }}
+
+                <div class="col-sm-4">
+                    {# Génération de l'input. #}
+                    {{ form_widget(form.clientAdRue, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+                <div class="form-group">
+                {# Génération du label. #}
+                {{ form_label(form.clientAdComp, "Complément", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+
+                {# Affichage des erreurs pour ce champ précis. #}
+                {{ form_errors(form.clientAdComp) }}
+
+                <div class="col-sm-4">
+                    {# Génération de l'input. #}
+                    {{ form_widget(form.clientAdComp, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+            <div class="form-group">
+                {# Génération du label. #}
+                {{ form_label(form.ville.villeCodepostal, "Code Postal", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+
+                {# Affichage des erreurs pour ce champ précis. #}
+                {{ form_errors(form.ville.villeCodepostal) }}
+
+                <div class="col-sm-4">
+                    {# Génération de l'input. #}
+                    {{ form_widget(form.ville.villeCodepostal, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+
+            <div  class="form-group">
+                {# Génération du label. #}
+                {{ form_label(form.ville.villeNom, "Ville", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+
+                {# Affichage des erreurs pour ce champ précis. #}
+                {{ form_errors(form.ville.villeNom) }}
+
+                <div class="col-sm-4">
+                    {# Génération de l'input. #}
+                    {{ form_widget(form.ville.villeNom, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+            <div  class="form-group">
+                {# Génération du label. #}
+                {{ form_label(form.clientDateInsc, "Date d'inscription", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+
+                {# Affichage des erreurs pour ce champ précis. #}
+                {{ form_errors(form.clientDateInsc) }}
+
+                <div class="col-sm-4">
+                    {# Génération de l'input. #}
+                    {{ form_widget(form.clientDateInsc, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+            {# Génération du label + error + widget pour un champ #}
+            {{ form_row(form.clientNom) }}
+            {{ form_row(form.clientPrenom) }}
+            {{ form_row(form.clientMail) }}
+            {{ form_row(form.clientTel) }}
+            {{ form_row(form.clientAdNum) }}
+            {{ form_row(form.clientAdRue) }}
+            {{ form_row(form.ville.villeCodepostal) }}
+            {{ form_row(form.ville.villeNom) }}
+
+
+            {# Génération automatique des champs pas encore écrits.
+                     Dans cet exemple, ce serait le champ CSRF (géré automatiquement par Symfony !)
+                     et tous les champs cachés (type « hidden »). #}
+            {#    {{ form_rest(form) }}#}
+
+            {# Pour le bouton, pas de label ni d'erreur, on affiche juste le widget #}
+            {{ form_widget(form.save, {'label':'Valider'},{'attr': {'class': 'btn btn-primary'}}) }}
+
+
+
+            {# Fermeture de la balise <form> du formulaire HTML #}
+            {{ form_end(form) }}
+
+        </div>
+    </div>
+{% endblock %}

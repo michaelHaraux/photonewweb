@@ -1,0 +1,27 @@
+
+{% extends "PhotonewMainBundle::layout.html.twig" %}
+
+{% block body %}
+
+  <h2>Répondre au message de {{visiteur.visiteurPrenom}} {{visiteur.visiteurNom}} </h2>
+  
+  <p>
+    Objet: {{ visiteur.message.objet.objetNom}}" 
+  </p>
+  
+  {# On met l'id de l'annonce dans la route de l'action du formulaire #}
+  <form action="{{ path('_reponseMessage',{'id': visiteur.id}) }}" method="post">
+    
+    <textarea type="textarea" id="contenu" name="contenu"></textarea><BR>
+    <a href="{{ path('_administration') }}" class="btn btn-default">
+      <i class="glyphicon glyphicon-chevron-left"></i>
+      Retour aux messages
+    </a>
+    {# Ici j'ai écrit le bouton de soumission à la main #}
+    <input type="submit" value="Envoyer" class="btn btn-default" />
+    {# Ceci va générer le champ CSRF #}
+    {{ form_rest(form) }}
+  </form>
+
+{% endblock %}{# empty Twig template #}
+{# empty Twig template #}

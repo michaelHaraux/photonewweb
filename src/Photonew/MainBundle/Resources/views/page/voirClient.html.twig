@@ -1,0 +1,27 @@
+{% extends "PhotonewMainBundle::layout.html.twig" %}
+{% block stylesheets %}
+    <link href="{{ asset('bundles/photonewmain/css/fichecss.css') }}" rel="stylesheet" type="text/css"/>
+
+        {% endblock %}
+{% block body %}
+
+    <div id="fiche">
+    <span>Nom : {{ user.userNom }}</span><BR>
+    <span>Prénom : {{ user.userPrenom }}</span><BR>
+    <span>Email : {{ user.email }}</span><BR>
+    <span>Adresse : {{ user.userAdNum }} {{ user.userAdRue }} {{ user.ville.villeCodePostal}} {{ user.ville.villeNom}}</span><BR>
+    <span>Téléphone : {{user.userTel }}</span><BR>
+    </div>
+   
+  {# On met l'id de l'annonce dans la route de l'action du formulaire #}
+  <form action="{{ path('_deleteClient', {'id': user.id}) }}" method="post">
+    <a href="{{ path('_administration') }}" class="btn btn-default">
+      <i class="glyphicon glyphicon-chevron-left"></i>
+      Retour à la liste des clients
+    </a>
+    {# Ici j'ai écrit le bouton de soumission à la main #}
+    <input type="submit" value="Supprimer" class="btn btn-danger" />
+    
+  </form>
+{% endblock %}{# empty Twig template #}
+{# empty Twig template #}

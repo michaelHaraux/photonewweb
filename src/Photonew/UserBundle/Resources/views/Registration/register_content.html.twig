@@ -1,0 +1,155 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="fos_user_registration_register">
+    {#{{ form_widget(form) }}#}
+
+    <div class="well">
+        {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+
+        {# Les erreurs générales du formulaire. #}
+        {{ form_errors(form) }}
+
+        <div class="row">
+            {{ form_errors(form.username) }}
+            <div class="col-sm-3">
+                {{ form_label(form.username) }}
+            </div>
+            <div class="col-sm-3">
+                {{ form_widget(form.username) }}
+            </div>
+        </div>
+        <div class="row">
+            {{ form_errors(form.email) }}
+            <div class="col-sm-3">
+                {{ form_label(form.email) }}
+            </div>
+            <div class="col-sm-3">
+                {{ form_widget(form.email) }}
+            </div>
+        </div>
+        <div class="row">
+            {{ form_errors(form.plainPassword.first) }}
+            <div class="col-sm-3">
+                {{ form_label(form.plainPassword.first) }}
+            </div>
+            <div class="col-sm-3">
+                {{ form_widget(form.plainPassword.first) }}
+            </div>
+        </div>
+        <div class="row">
+            {{ form_errors(form.plainPassword.second) }}
+            <div class="col-sm-3">
+                {{ form_label(form.plainPassword.second) }}
+            </div>
+            <div class="col-sm-3">
+                {{ form_widget(form.plainPassword.second) }}
+            </div>
+        </div>
+        <div class="row">
+            {{ form_errors(form.userNom) }}
+            <div class="col-sm-3">
+                {{ form_label(form.userNom) }}
+            </div>
+            <div class="col-sm-3">
+                {{ form_widget(form.userNom) }}
+            </div>
+        </div>
+        <div class="row">
+            {{ form_errors(form.userPrenom) }}
+            <div class="col-sm-3">
+                {{ form_label(form.userPrenom) }}
+            </div>
+            <div class="col-sm-3">
+                {{ form_widget(form.userPrenom) }}
+            </div>
+        </div>
+        <div class="row">
+            {{ form_errors(form.userTel) }}
+            <div class="col-sm-3">
+                {{ form_label(form.userTel) }}
+            </div>
+            <div class="col-sm-3">
+                {{ form_widget(form.userTel) }}
+            </div>
+        </div>
+        <div class="row">
+            {{ form_errors(form.userDateInsc) }}
+            <div class="col-sm-3">
+                {{ form_label(form.userDateInsc) }}
+            </div>
+            <div class="col-sm-3">
+                {{ form_widget(form.userDateInsc) }}
+            </div>
+        </div>
+        <div class="row">
+            {{ form_errors(form.userAdNum) }}
+            <div class="col-sm-3">
+                {{ form_label(form.userAdNum) }}
+            </div>
+            <div class="col-sm-3">
+                {{ form_widget(form.userAdNum) }}
+            </div>
+        </div>
+        <div class="row">
+            {{ form_errors(form.userAdRue) }}
+            <div class="col-sm-3">
+                {{ form_label(form.userAdRue) }}
+            </div>
+            <div class="col-sm-3">
+                {{ form_widget(form.userAdRue) }}
+            </div>
+        </div>
+        <div class="row">
+            {{ form_errors(form.userAdComp) }}
+            <div class="col-sm-3">
+                {{ form_label(form.userAdComp) }}
+            </div>
+            <div class="col-sm-3">
+                {{ form_widget(form.userAdComp) }}
+            </div>
+        </div>
+        <div class="row">
+            {{ form_errors(form.ville.villeCodepostal) }}
+            <div class="col-sm-3">
+                {{ form_label(form.ville.villeCodepostal) }}
+            </div>
+            <div class="col-sm-3">
+                {{ form_widget(form.ville.villeCodepostal) }}
+            </div>
+        </div>
+        <div class="row">
+            {{ form_errors(form.ville.villeNom) }}
+            <div class="col-sm-3">
+                {{ form_label(form.ville.villeNom) }}
+            </div>
+            <div class="col-sm-3">
+                {{ form_widget(form.ville.villeNom) }}
+            </div>
+        </div>
+
+
+
+
+        {# Génération du label + error + widget pour un champ #}
+        {{ form_row(form.username) }}
+        {{ form_row(form.email) }}
+        {{ form_row(form.plainPassword.first) }}
+        {{ form_row(form.plainPassword.second) }}
+        {{ form_row(form.userNom) }}
+        {{ form_row(form.userPrenom) }}
+        {{ form_row(form.userTel) }}
+        {{ form_row(form.userDateInsc) }}
+        {{ form_row(form.userAdNum) }}
+        {{ form_row(form.userAdRue) }}
+        {{ form_row(form.userAdComp) }}
+        {{ form_row(form.ville.villeCodepostal) }}
+        {{ form_row(form.ville.villeNom) }}
+        {{ form_end(form) }}
+        <div>
+            <input type="submit" value="{{ 'registration.submit'|trans }}" />
+        </div>
+        
+    </div>
+
+
+</form>

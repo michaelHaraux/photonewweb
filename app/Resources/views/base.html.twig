@@ -1,0 +1,96 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+
+        <meta charset="utf-8">
+
+        {# On charge le CSS de bootstrap depuis le site directement #}
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">     
+        <link href="{{ asset('bundles/photonewmain/css/testcss.css') }}" rel="stylesheet" type="text/css"/>
+        <link href="{{ asset('bundles/photonewmain/css/styles.css') }}" rel="stylesheet" type="text/css"/>
+
+        {% block stylesheets %}
+        {% endblock %}
+    </head>
+
+    <body>
+        <div class="container">
+            <title>{% block title %}Photonew{% endblock %}</title>
+            <div class ="entete">
+                <section class="row vertical-align">
+                    <div class="col-md-6"><img class="img-responsive" src="{{ asset('bundles/photonewmain/images/photonew.jpg') }}" alt="logo" height="50%" /></div>
+                    <div id="title" class="col-md-6">Photographie <br>&<br> Communication Publicitaire</div>
+                </section>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <a href="{{ path('_administration') }}" class="btn btn-info" role="button">Administration</a>
+                {% endif %}
+
+                {#<a href="{{ path('_gallery') }}" class="btn btn-info" role="button">Galerie</a>#}
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <a class="navbar-brand">www.photonew.fr</a>
+                        </div>
+                        {% block menu %}
+
+                        {% endblock %}
+                        <form class="navbar-form navbar-right inline-form">
+                            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                <a href="{{ path('_espace' ,{'id': app.user.id})}}" class="btn btn-info" role="button">Espace Personnel</a>
+                            {% endif %}
+                            {#<div class="form-group">
+                                <input type="search" class="input-sm form-control" placeholder="Recherche sur la page">
+                                <button type="submit" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-eye-open"></span> Chercher</button>
+                            </div>#}
+                        </form>
+                    </div>
+                </nav>
+
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    Connecté en tant que {{ app.user.username }} - <a href="{{ path('fos_user_security_logout') }}">Déconnexion</a><a href="{{ path('fos_user_change_password') }}"> - Changer votre mot de passe</a>
+                {% else %}
+                    Connectez-vous pour accéder à vôtre espace personnel <a href="{{ path('fos_user_security_login') }}">Connexion</a>
+                {% endif %}
+                {# {{ knp_menu_render('breadcrumb',{'currentAsLink':false}) }}#}
+                <header class="page-header">
+                    {#                {{ knp_menu_render('primary', {'currentClass': 'active'}) }}#}          
+                    <h1>{% block pageTitle %}{% endblock %}</h1>
+                </header>
+            </div>
+
+            <div class="row">
+                {# <div class="col-sm-1" id="rappelTitre">
+                     {% block sectionTitle %}
+                         Section
+                     {% endblock %}
+                 </div>#}
+
+                <section class="col-sm-12">
+                    {% block body %}
+
+                    {% endblock %}
+                </section>
+            </div>
+            {#        <div class="navbar navbar-fixed-bottom"> #}       
+            <footer class="row">
+                <div class="col-md-2"><a href="https://www.facebook.com/photonew" target="_blank"> 
+                        <img class="img-responsive" src="{{ asset('bundles/photonewmain/images/facebook.png') }}" alt="facebook" height="50%" />
+                    </a> 
+                </div>
+                <div class="col-md-10">
+                    A propos de Photonew Contact Plan du site
+                </div>
+            </footer>
+            {#     </div>#}
+        </div>
+        {% block javascripts %}
+            <link rel="stylesheet" href="/Tarek/view/visitor/home/bootstrap-3.2.0/js/dropdown.js" media="screen"/>
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+            {#            <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+            #}            <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+            <script src="{{ asset('bundles/photonewmain/js/js.js') }}"></script>
+
+        {% endblock %}
+    </body>
+</html>

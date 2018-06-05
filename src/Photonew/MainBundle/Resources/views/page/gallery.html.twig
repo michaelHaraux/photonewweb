@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en-US">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+        <title>jQuery Lightbox Image Thumbnail Gallery</title>
+        <link rel="stylesheet" href="//blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
+        <link href="{{ asset('bundles/photonewmain/css/blueimp-gallery.min.css') }}" rel="stylesheet" type="text/css"/>
+    </head>
+
+    <body>
+        <div id="blueimp-gallery" class="blueimp-gallery">
+            <div class="slides"></div>
+            <h3 class="title"></h3>
+            <a class="prev">‹</a>
+            <a class="next">›</a>
+            <a class="close">×</a>
+            <a class="play-pause"></a>
+            <ol class="indicator"></ol>
+        </div>
+
+        <div id="links">
+            <a href="{{ asset('bundles/photonewmain/images/photos/01-app-design-iphone.png') }}" rel="lightbox" title="Designed by <a href='http://dribbble.com/shots/963800-New-App-design' target='_blank'>Natalia Berowska</a>">
+                <img class="img-responsive" src="{{ asset('bundles/photonewmain/images/photos/01-app-design-iphone-thumb.png') }}" alt="logo" height="50%" />
+            </a>
+            <a href="{{ asset('bundles/photonewmain/images/photos/02-ios-side-navigation.png') }}" rel="lightbox" title="Designed by <a href='http://dribbble.com/shots/963800-New-App-design' target='_blank'>Natalia Berowska</a>">
+                <img class="img-responsive" src="{{ asset('bundles/photonewmain/images/photos/02-ios-side-navigation-thumb.png') }}" alt="logo" height="50%" />
+            </a>
+            <a href="{{ asset('bundles/photonewmain/images/photos/03-share-buttons-ios.png') }}" rel="lightbox" title="Designed by <a href='http://dribbble.com/shots/963800-New-App-design' target='_blank'>Natalia Berowska</a>">
+                <img class="img-responsive" src="{{ asset('bundles/photonewmain/images/photos/03-share-buttons-ios-thumb.png') }}" alt="logo" height="50%" />
+            </a>
+        </div>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="//blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
+        <script src="js/bootstrap-image-gallery.min.js"></script>
+        <script>
+            document.getElementById('links').onclick = function (event) {
+                event = event || window.event;
+                var target = event.target || event.srcElement,
+                        link = target.src ? target.parentNode : target,
+                        options = {index: link, event: event},
+                links = this.getElementsByTagName('a');
+                blueimp.Gallery(links, options);
+            };
+        </script>
+    </body>
+</html>

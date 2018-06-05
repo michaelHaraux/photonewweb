@@ -1,0 +1,31 @@
+{% extends "PhotonewMainBundle::layout.html.twig" %}
+{% block pageTitle %}Espace client{% endblock %}
+{% block stylesheets %}
+
+    
+{% endblock %}
+{#{% block sectionTitle %}Espace client{% endblock %}#}
+{% block menu %}
+    <ul class="nav navbar-nav">
+        <li > <a href="{{ path('_accueil') }}">Accueil</a> </li>
+        <li> <a href="{{ path('_testMenu') }}">Studio Photographique</a> </li>
+        <li> <a href="#">Communication Publicitaire</a> </li>
+        <li class="dropdown">
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="icon-user icon-white"></i> Professionnels<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li>
+                    <a href="">Studio Photo</a>
+                </li>
+                <li>
+                    <a href="">Studio Info</a>
+                </li> 
+            </ul>
+        </li>
+        <li > <a href="{{ path('_contact') }}">Contact</a> </li>
+    </ul>
+{% endblock %}
+{% block photonewBundle_body %}
+     
+    Bienvenue dans votre espace personnel Photonew   
+   </br> {{user.userNom}} {{user.userPrenom}} {{user.email}}
+{% endblock %}

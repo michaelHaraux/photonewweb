@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+  <services>
+      
+    <service id="photonew_main.menu_builder" class="Photonew\MainBundle\Menu\MenuBuilder">
+      <argument type="service" id="knp_menu.factory"/>
+    </service>
+    
+    <service id="photonew_main.menu.breadcrumb" class="Knp\Menu\MenuItem" factory-method="createBreadcrumbMenu" factory-service="photonew_main.menu_builder" scope="request">
+      <tag name="knp_menu.menu" alias="breadcrumb"/>
+      <argument type="service" id="request"/>
+    </service>
+    
+    <service id="photonew_main.menu.primary" class="Knp\Menu\MenuItem" factory-method="createPrimaryMenu" factory-service="photonew_main.menu_builder" scope="request">
+      <tag name="knp_menu.menu" alias="primary" />
+      <argument type="service" id="request"/>
+       
+    </service>
+    
+  </services>
+</container>

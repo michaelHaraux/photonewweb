@@ -1,0 +1,32 @@
+{# src/OC/PlatformBundle/Resources/views/Advert/index.html.twig #}
+
+{% extends "PhotonewMainBundle::clientLayout.html.twig" %}
+{% block pageTitle %}<div >Bienvenue sur Photonew.fr</div>{% endblock %}
+{% block sectionTitle %}Accueil{% endblock %}
+{% block menu %}
+    <ul class="nav navbar-nav">
+        <li class="active"> <a href="{{ path('_accueil') }}">Accueil</a> </li>
+        <li> <a href="{{ path('_testMenu') }}">Studio Photographique</a> </li>
+        <li> <a href="#">Communication Publicitaire</a> </li>
+        <li class="dropdown">
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="icon-user icon-white"></i> Professionnels<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li>
+                    <a href="">Studio Photo</a>
+                </li>
+                <li>
+                    <a href="">Studio Info</a>
+                </li> 
+            </ul>
+        </li>
+        <li> <a href="{{ path('_contact') }}">Contact</a> </li>
+    </ul>
+{% endblock %}
+{% block photonewBundle_body %}
+   
+     <img class="img-responsive" src="{{ asset('bundles/photonewmain/images/vitrine.png') }}" alt="logo" height="100%" />
+     
+{% endblock %}
+{% block aside %}
+    <img class="img-responsive" src="{{ asset('bundles/photonewmain/images/titre.png') }}" alt="logo" height="100%" />
+{% endblock %}

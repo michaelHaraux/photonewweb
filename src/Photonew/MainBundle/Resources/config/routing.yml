@@ -1,0 +1,67 @@
+_accueil:
+    pattern:  /accueil
+    defaults: { _controller: PhotonewMainBundle:Default:index }
+
+_testMenu:
+    pattern:  /testmenu
+    defaults: { _controller: PhotonewMainBundle:Default:testmenu }
+
+_contact:
+    pattern:  /contact
+    defaults: { _controller: PhotonewMainBundle:Default:contact }
+    
+_administration:
+    pattern:  /admin
+    defaults: { _controller: PhotonewMainBundle:Default:admin }
+    
+_map:
+    pattern:  /map
+    defaults: { _controller: PhotonewMainBundle:Default:map }
+    
+_login:
+    pattern:  /login
+    defaults: { _controller: PhotonewUserBundle:Security:login }
+    
+_deleteMessage:
+    pattern:  /deleteMessage/{id}
+    defaults: { _controller: PhotonewMainBundle:Default:deleteMessage }
+    
+_reponseMessage:
+    pattern:  /reponseMessage/{id}
+    defaults: { _controller: PhotonewMainBundle:Default:reponseMessage }
+    
+_deleteClient:
+    pattern:  /deleteClient/{id}
+    defaults: { _controller: PhotonewMainBundle:Default:deleteClient }
+    
+_modifierClient:
+    pattern:  /modifierClient/{id}
+    defaults: { _controller: PhotonewMainBundle:Default:modifierClient }
+    
+_voirClient:
+    pattern:  /voirClient/{id}
+    defaults: { _controller: PhotonewMainBundle:Default:voirClient }
+    
+_commande:
+    pattern:  /commande/{iduser}
+    defaults: { _controller: PhotonewMainBundle:Default:Commande }
+    
+_modifierCommande:
+    pattern:  /modifierCommande/{iduser}/{idcommande}
+    defaults: { _controller: PhotonewMainBundle:Default:modifierCommande }   
+ 
+_deleteCommande:
+    pattern:  /deleteCommande/{idcommande}/{iduser}
+    defaults: { _controller: PhotonewMainBundle:Default:deleteCommande }
+    
+_gallery:
+    pattern:  /gallery
+    defaults: { _controller: PhotonewMainBundle:Default:gallery }
+ 
+_espace:
+    pattern:  /espace/{id}
+    defaults: { _controller: PhotonewMainBundle:Default:espace }
+    
+_communication:
+    pattern:  /communication
+    defaults: { _controller: PhotonewMainBundle:Default:communication }

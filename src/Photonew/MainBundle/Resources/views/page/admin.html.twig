@@ -1,0 +1,95 @@
+{# empty Twig template #}
+{% extends "PhotonewMainBundle::layout.html.twig" %}
+{% block pageTitle %}Administration{% endblock %}
+{% block sectionTitle %}Administration{% endblock %}
+{% block menu %}
+    <ul class="nav navbar-nav">
+        <li > <a href="{{ path('_accueil') }}">Accueil</a> </li>
+        <li > <a href="{{ path('_testMenu') }}">Studio Photographique</a> </li>
+        <li> <a href="#">Communication Publicitaire</a> </li>
+        <li class="dropdown">
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="icon-user icon-white"></i> Professionnels<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li>
+                    <a href="">Studio Photo</a>
+                </li>
+                <li>
+                    <a href="">Studio Info</a>
+                </li> 
+            </ul>
+        </li>
+        <li > <a href="{{ path('_contact') }}">Contact</a> </li>
+    </ul>
+{% endblock %}
+
+{% block photonewBundle_body %}
+
+    <table class="table table-bordered table-striped table-condensed">
+        <caption>
+            <h4>Visiteurs</h4>
+        </caption>
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Mail</th>
+                <th>Objet</th>
+                <th>Contenu</th>
+                <th>Date</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for visiteur in listeVisiteurs %}
+                <tr>
+                    <td>{{ visiteur.visiteurNom }}</td>
+                    <td>{{ visiteur.visiteurPrenom }}</td>
+                    <td>{{ visiteur.visiteurMail }}</td>
+                    <td>{{ visiteur.message.objet.objetNom}}</td>
+                    <td>{{ visiteur.message.messageContenu }}</td>
+                    <td>{{ visiteur.message.messageDate |date("d-m-Y")}}</td>
+                    <td><a href="{{ path('_reponseMessage' ,{'id': visiteur.id})}}" class="btn btn-default" role="button">Répondre</a></td>
+                    <td><a href="{{ path('_deleteMessage' ,{'id': visiteur.id})}}" class="btn btn-danger" role="button"><i class="glyphicon glyphicon-trash"></i></a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <table class="table table-bordered table-striped table-condensed">
+        <caption>
+            <h4>Clients</h4>
+        </caption>
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Mail</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in listeUsers %}
+                {% if not loop.first %}
+                    <tr>
+                        <td>{{ user.userNom }}</td>
+                        <td>{{ user.userPrenom }}</td>
+                        <td>{{ user.email }}</td>
+                        <td><a href="{{ path('_voirClient' ,{'id': user.id})}}" class="btn btn-default" role="button">Voir</a></td>
+                        <td><a href="{{ path('_commande' ,{'iduser': user.id})}}" class="btn btn-default" role="button">Commandes</a></td>
+                        <td><a href="{{ path('_modifierClient' ,{'id': user.id})}}" class="btn btn-default" role="button">Modifier</a></td>
+                        <td><a href="{{ path('_deleteClient' ,{'id': user.id})}}" class="btn btn-danger" role="button"><i class="glyphicon glyphicon-trash"></i></a></td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+
+{% block aside %}
+    <h3>Formulaire client</h3>
+
+
+    <a href="{{ path('fos_user_registration_register') }}">Enregistrer un client</a>
+{% endblock %}

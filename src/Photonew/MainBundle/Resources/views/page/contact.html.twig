@@ -1,0 +1,156 @@
+{% extends "PhotonewMainBundle::clientLayout.html.twig" %}
+{% block stylesheets %}
+    {#   <script src="http://maps.googleapis.com/maps/api/js"></script>#}
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
+    <script src="{{ asset('bundles/photonewmain/js/googleMap.js') }}"></script>
+    <script src=" http://maps.google.com/?file=api&v=2.x&key=AIzaSyD9Sz2GqS_VL2QQkgjKaXvZ7FiUhgk30dY" type="text/javascript"></script>
+
+
+{% endblock %}
+{% block pageTitle %}Contact{% endblock %}
+{% block sectionTitle %}Contact{% endblock %}
+{% block menu %}
+    <ul class="nav navbar-nav">
+        <li > <a href="{{ path('_accueil') }}">Accueil</a> </li>
+        <li> <a href="{{ path('_testMenu') }}">Studio Photographique</a> </li>
+        <li> <a href="{{ path('_communication') }}">Communication Publicitaire</a> </li>
+        <li class="dropdown">
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="icon-user icon-white"></i> Professionnels<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li>
+                    <a href="">Studio Photo</a>
+                </li>
+                <li>
+                    <a href="">Studio Info</a>
+                </li> 
+            </ul>
+        </li>
+        <li class="active"> <a href="{{ path('_contact') }}">Contact</a> </li>
+    </ul>
+
+{% endblock %}
+{% block aside %}
+    <div>Se rendre chez Photonew</div><BR><BR>
+    <div id="map_mezy"></div>  
+
+    <a  class="btn btn-info" role="button"href="{{ path('_map') }}" style="display: block; width: 100%;">Itineraire!</a>
+{% endblock %}  
+
+{% block photonewBundle_body %}
+
+    <h3>Formulaire de contact</h3>
+
+    <div class="well">
+        {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+
+        {# Les erreurs générales du formulaire. #}
+        {{ form_errors(form) }}
+
+        <div class="form-group">
+            {# Génération du label. #}
+            {{ form_label(form.visiteurNom, "Nom", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+
+            {# Affichage des erreurs pour ce champ précis. #}
+            {{ form_errors(form.visiteurNom) }}
+
+            <div class="col-sm-4">
+                {# Génération de l'input. #}
+                {{ form_widget(form.visiteurNom, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+        <div class="form-group">
+            {# Génération du label. #}
+            {{ form_label(form.visiteurPrenom, "Prénom", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+
+            {# Affichage des erreurs pour ce champ précis. #}
+            {{ form_errors(form.visiteurPrenom) }}
+
+            <div class="col-sm-4">
+                {# Génération de l'input. #}
+                {{ form_widget(form.visiteurPrenom, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+        <div class="form-group">
+            {# Génération du label. #}
+            {{ form_label(form.visiteurMail, "Mail", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+
+            {# Affichage des erreurs pour ce champ précis. #}
+            {{ form_errors(form.visiteurMail) }}
+
+            <div class="col-sm-4">
+                {# Génération de l'input. #}
+                {{ form_widget(form.visiteurMail, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+        <div class="form-group">
+            {# Génération du label. #}
+            {{ form_label(form.visiteurTel, "Téléphone", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+
+            {# Affichage des erreurs pour ce champ précis. #}
+            {{ form_errors(form.visiteurTel) }}
+
+            <div class="col-sm-4">
+                {# Génération de l'input. #}
+                {{ form_widget(form.visiteurTel, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div  class="form-group">
+            {{ form_label(form.message.objet.objetNom, "Objet", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+            {{ form_errors(form.message.objet.objetNom) }}
+            <div class="col-sm-4">
+                {{ form_widget(form.message.objet.objetNom, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>   
+
+        <div class="form-group">
+            {# Génération du label. #}
+            {{ form_label(form.message.messageContenu, "Votre message", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+
+            {# Affichage des erreurs pour ce champ précis. #}
+            {{ form_errors(form.message.messageContenu) }}
+
+            <div class="col-sm-4">
+                {# Génération de l'input. #}
+                {{ form_widget(form.message.messageContenu, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div style="display: none" class="form-group">
+            {# Génération du label. #}
+            {{ form_label(form.message.messageDate, "Date", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+
+            {# Affichage des erreurs pour ce champ précis. #}
+            {{ form_errors(form.message.messageDate) }}
+
+            <div class="col-sm-4">
+                {# Génération de l'input. #}
+                {{ form_widget(form.message.messageDate, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+
+        {# Génération du label + error + widget pour un champ #}
+        {{ form_row(form.visiteurNom) }}
+        {{ form_row(form.visiteurPrenom) }}
+        {{ form_row(form.visiteurMail) }}
+        {{ form_row(form.visiteurTel) }}
+        {{ form_row(form.message.objet.objetNom) }}
+        {{ form_row(form.message.messageContenu) }}
+        {{ form_row(form.message.messageDate) }}
+
+        {# Génération automatique des champs pas encore écrits.
+                 Dans cet exemple, ce serait le champ CSRF (géré automatiquement par Symfony !)
+                 et tous les champs cachés (type « hidden »). #}
+        {#    {{ form_rest(form) }}#}
+
+        {# Pour le bouton, pas de label ni d'erreur, on affiche juste le widget #}
+        {{ form_widget(form.save, {'label':'Valider'},{'attr': {'class': 'btn btn-primary'}}) }}
+
+
+
+        {# Fermeture de la balise <form> du formulaire HTML #}
+        {{ form_end(form) }}
+
+    </div>
+{% endblock %}
